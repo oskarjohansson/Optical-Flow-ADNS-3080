@@ -1,21 +1,16 @@
 #include <Arduino.h>
-#include <SPI.h>
+#include <ADNS3080.h>
+#define SS 13
+#define RESET 12
+
+
+ADNS3080 camera(SS, RESET); 
+
 
 void setup() {
-  SPI.begin();
-  SPI.setClockDivider(SPI_CLOCK_DIV64);    
-  Serial.begin(9600);
-  digitalWrite(SS, HIGH);
-  delay(1000);
+  camera.begin();
 }
 
 void loop() {
-  digitalWrite(SS, LOW);
-  Serial.println(SPI.transfer(0x0A), HEX);
-  digitalWrite(SS, HIGH);
-  delay(1000);
-  digitalWrite(SS, LOW);
-  Serial.println(SPI.transfer(0x3F), HEX);
-  digitalWrite(SS, HIGH);
-  delay(1000);
+
 }
